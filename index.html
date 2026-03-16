@@ -1,0 +1,2377 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MoonTec – Mobile Repair & Accessories</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+/* ===== CSS VARIABLES ===== */:root {
+    --bg:#050d1a;
+    --bg2:#081221;
+    --bg3:#0b1929;
+    --card:#0d1f35;
+    --card2:#0f243d;
+    --border:rgba(0,180,255,0.15);
+    --text:#e8f4ff;
+    --text2:#8db8d8;
+    --text3:#4a7a9b;
+    --accent:#00b4ff;
+    --accent2:#0077cc;
+    --glow:rgba(0,180,255,0.35);
+    --glow2:rgba(0,180,255,0.12);
+    --white:#ffffff;
+    --gold:#f0c040;
+    --green:#00e5a0;
+    --nav-h:70px;
+    --radius:16px;
+    --radius-sm:10px;
+    --shadow:0 8px 40px rgba(0,0,0,0.5);
+    --shadow-glow:0 0 30px rgba(0,180,255,0.2);
+}
+
+/* ===== RESET & BASE ===== */
+*,*::before,*::after {
+    box-sizing:border-box;
+    margin:0;
+    padding:0
+}
+html {
+    scroll-behavior:smooth;
+    font-size:16px
+}
+body {
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    overflow-x:hidden;
+    transition:background 0.4s,color 0.4s
+}
+a {
+    text-decoration:none;
+    color:inherit
+}
+img {
+    max-width:100%;
+    display:block
+}
+ul {
+    list-style:none
+}
+button {
+    font-family:'Poppins',sans-serif;
+    cursor:pointer;
+    border:none;
+    outline:none
+}
+input,textarea,select {
+    font-family:'Poppins',sans-serif;
+    outline:none
+}
+section {
+    padding:90px 0
+}
+/* ===== SCROLLBAR ===== */::-webkit-scrollbar {
+    width:6px
+}
+::-webkit-scrollbar-track {
+    background:var(--bg)
+}
+::-webkit-scrollbar-thumb {
+    background:var(--accent2);
+    border-radius:3px
+}
+/* ===== UTILITY ===== */
+.container {
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 24px
+}
+.section-label {
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:12px;
+    display:block
+}
+.section-title {
+    font-size:clamp(2rem,4vw,2.8rem);
+    font-weight:800;
+    line-height:1.2;
+    margin-bottom:16px
+}
+.section-sub {
+    color:var(--text2);
+    font-size:1.05rem;
+    max-width:540px
+}
+.section-header {
+    text-align:center;
+    margin-bottom:60px
+}
+.section-header .section-sub {
+    margin:0 auto
+}
+.btn {
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 32px;
+    border-radius:50px;
+    font-size:0.95rem;
+    font-weight:600;
+    transition:all 0.3s;
+    cursor:pointer;
+    border:none
+}
+.btn-primary {
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#fff;
+    box-shadow:0 0 24px var(--glow)
+}
+.btn-primary:hover {
+    transform:translateY(-3px);
+    box-shadow:0 0 40px var(--glow)
+}
+.btn-outline {
+    background:transparent;
+    color:var(--accent);
+    border:2px solid var(--accent);
+    box-shadow:0 0 12px var(--glow2)
+}
+.btn-outline:hover {
+    background:var(--accent);
+    color:#fff;
+    box-shadow:0 0 30px var(--glow);
+    transform:translateY(-3px)
+}
+.glow-text {
+    background:linear-gradient(135deg,#fff 0%,var(--accent) 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text
+}
+.tag {
+    display:inline-block;
+    background:var(--glow2);
+    border:1px solid var(--border);
+    border-radius:50px;
+    padding:4px 14px;
+    font-size:0.78rem;
+    color:var(--accent);
+    font-weight:600
+}
+/* ===== NOISE OVERLAY ===== */
+body::before {
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events:none;
+    z-index:0;
+    opacity:0.5
+}
+/* ===== NAVBAR ===== */
+nav {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1000;
+    height:var(--nav-h);
+    display:flex;
+    align-items:center;
+    transition:background 0.4s,backdrop-filter 0.4s,box-shadow 0.4s
+}
+nav.scrolled {
+    background:rgba(5,13,26,0.92);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    box-shadow:0 1px 0 var(--border)
+}
+
+.nav-inner {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 24px
+}
+.logo {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:800;
+    font-size:1.4rem
+}
+.logo-icon {
+    width:38px;
+    height:38px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1rem;
+    color:#fff;
+    box-shadow:0 0 16px var(--glow)
+}
+.logo span {
+    color:var(--accent)
+}
+
+/* Hide the Book Repair button only on mobile devices (screens smaller than 600px) */
+@media (max-width: 600px) {
+    .hide-on-mobile {
+        display: none !important;
+    }
+}
+
+.nav-links {
+    display:flex;
+    align-items:center;
+    gap:32px
+}
+.nav-links a {
+    font-size:0.88rem;
+    font-weight:500;
+    color:var(--text2);
+    transition:color 0.3s;
+    position:relative
+}
+.nav-links a::after {
+    content:'';
+    position:absolute;
+    bottom:-3px;
+    left:0;
+    width:0;
+    height:2px;
+    background:var(--accent);
+    transition:width 0.3s;
+    border-radius:2px
+}
+.nav-links a:hover {
+    color:var(--accent)
+}
+.nav-links a:hover::after {
+    width:100%
+}
+.nav-actions {
+    display:flex;
+    align-items:center;
+    gap:12px
+}
+
+.hamburger {
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+    padding:4px
+}
+.hamburger span {
+    display:block;
+    width:24px;
+    height:2px;
+    background:var(--text);
+    border-radius:2px;
+    transition:all 0.3s
+}
+.mobile-menu {
+    display:none;
+    position:fixed;
+    top:var(--nav-h);
+    left:0;
+    right:0;
+    background:var(--bg2);
+    border-bottom:1px solid var(--border);
+    padding:24px;
+    z-index:999;
+    flex-direction:column;
+    gap:16px
+}
+.mobile-menu.open {
+    display:flex
+}
+.mobile-menu a {
+    font-size:0.95rem;
+    font-weight:500;
+    color:var(--text2);
+    padding:10px 0;
+    border-bottom:1px solid var(--border)
+}
+.mobile-menu a:hover {
+    color:var(--accent)
+}
+/* ===== HERO ===== */
+#hero {
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    padding:0
+}
+.hero-bg {
+    position:absolute;
+    inset:0;
+    z-index:0
+}
+.hero-bg-img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0.18;
+    filter:blur(1px)
+}
+.hero-bg::after {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,var(--bg) 40%,transparent 100%)
+}
+.hero-grid {
+    position:absolute;
+    inset:0;
+    background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+    background-size:60px 60px;
+    opacity:0.5
+}
+.hero-orb {
+    position:absolute;
+    width:600px;
+    height:600px;
+    background:radial-gradient(circle,rgba(0,180,255,0.12) 0%,transparent 70%);
+    right:-100px;
+    top:50%;
+    transform:translateY(-50%);
+    pointer-events:none
+}
+.hero-orb2 {
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:radial-gradient(circle,rgba(0,100,200,0.1) 0%,transparent 70%);
+    left:10%;
+    bottom:5%;
+    pointer-events:none
+}
+.hero-content {
+    position:relative;
+    z-index:2;
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 24px;
+    padding-top:var(--nav-h)
+}
+.hero-badge {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--glow2);
+    border:1px solid var(--border);
+    border-radius:50px;
+    padding:8px 18px;
+    font-size:0.8rem;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:28px;
+    animation:fadeUp 0.8s ease both
+}
+.hero-badge i {
+    animation:spin 4s linear infinite
+}
+@keyframes spin {
+    to {
+    transform:rotate(360deg)
+}
+}.hero-title {
+    font-size:clamp(2.6rem,6vw,4.5rem);
+    font-weight:900;
+    line-height:1.1;
+    margin-bottom:24px;
+    animation:fadeUp 0.8s 0.15s ease both
+}
+.hero-sub {
+    font-size:1.1rem;
+    color:var(--text2);
+    max-width:520px;
+    margin-bottom:40px;
+    animation:fadeUp 0.8s 0.3s ease both;
+    line-height:1.8
+}
+.hero-btns {
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    animation:fadeUp 0.8s 0.45s ease both
+}
+.hero-stats {
+    display:flex;
+    gap:40px;
+    margin-top:60px;
+    animation:fadeUp 0.8s 0.6s ease both;
+    flex-wrap:wrap
+}
+.hero-stat {
+    text-align:center
+}
+.hero-stat-num {
+    font-size:2.2rem;
+    font-weight:800;
+    color:var(--accent);
+    display:block;
+    line-height:1
+}
+.hero-stat-label {
+    font-size:0.8rem;
+    color:var(--text3);
+    margin-top:6px;
+    font-weight:500
+}
+.floating-icons {
+    position:absolute;
+    right:8%;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:2;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    animation:fadeUp 1s 0.5s ease both
+}
+@media(max-width:900px) {
+    .floating-icons {
+    display:none
+}
+}.fi {
+    width:80px;
+    height:80px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.8rem;
+    color:var(--accent);
+    box-shadow:var(--shadow-glow);
+    transition:all 0.4s;
+    animation:float 3s ease-in-out infinite
+}
+.fi:nth-child(1) {
+    animation-delay:0s
+}
+.fi:nth-child(2) {
+    animation-delay:0.5s
+}
+.fi:nth-child(3) {
+    animation-delay:1s
+}
+.fi:nth-child(4) {
+    animation-delay:1.5s
+}
+.fi:hover {
+    transform:scale(1.12) translateY(-6px)!important;
+    box-shadow:0 0 30px var(--glow)
+}
+@keyframes float {
+    0%,100% {
+    transform:translateY(0)
+}
+50% {
+    transform:translateY(-12px)
+}
+}@keyframes fadeUp {
+    from {
+    opacity:0;
+    transform:translateY(30px)
+}
+to {
+    opacity:1;
+    transform:translateY(0)
+}
+}.scroll-hint {
+    position:absolute;
+    bottom:32px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    color:var(--text3);
+    font-size:0.75rem;
+    z-index:2;
+    animation:fadeUp 1s 1s ease both
+}
+.scroll-hint .arrow {
+    width:24px;
+    height:24px;
+    border-right:2px solid var(--accent);
+    border-bottom:2px solid var(--accent);
+    transform:rotate(45deg);
+    animation:bounce 1.5s ease-in-out infinite
+}
+@keyframes bounce {
+    0%,100% {
+    transform:rotate(45deg) translateY(0)
+}
+50% {
+    transform:rotate(45deg) translateY(6px)
+}
+}/* ===== ABOUT ===== */
+#about {
+    background:var(--bg2);
+    position:relative;
+    overflow:hidden
+}
+#about::before {
+    content:'';
+    position:absolute;
+    top:-80px;
+    right:-80px;
+    width:400px;
+    height:400px;
+    background:radial-gradient(circle,var(--glow2) 0%,transparent 70%);
+    pointer-events:none
+}
+.about-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center
+}
+@media(max-width:768px) {
+    .about-grid {
+    grid-template-columns:1fr
+}
+}.about-visual {
+    position:relative
+}
+.about-img-wrap {
+    border-radius:24px;
+    overflow:hidden;
+    position:relative;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow-glow)
+}
+.about-img-wrap img {
+    width:100%;
+    height:340px;
+    object-fit:cover;
+    filter:saturate(0.8) hue-rotate(10deg)
+}
+.about-badge {
+    position:absolute;
+    bottom:24px;
+    left:24px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:16px 20px;
+    backdrop-filter:blur(10px);
+    box-shadow:var(--shadow)
+}
+.about-badge-num {
+    font-size:1.8rem;
+    font-weight:800;
+    color:var(--accent);
+    display:block;
+    line-height:1
+}
+.about-badge-text {
+    font-size:0.75rem;
+    color:var(--text2)
+}
+.about-list {
+    margin-top:24px;
+    display:flex;
+    flex-direction:column;
+    gap:12px
+}
+.about-item {
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 18px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    font-size:0.9rem;
+    font-weight:500;
+    transition:all 0.3s
+}
+.about-item:hover {
+    border-color:var(--accent);
+    box-shadow:0 0 16px var(--glow2);
+    transform:translateX(6px)
+}
+.about-item i {
+    color:var(--accent);
+    font-size:1rem;
+    width:20px;
+    text-align:center
+}
+/* ===== SERVICES ===== */
+#services {
+    background:var(--bg)
+}
+.services-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:24px
+}
+.service-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:32px;
+    transition:all 0.35s;
+    position:relative;
+    overflow:hidden;
+    cursor:default
+}
+.service-card::before {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,var(--glow2),transparent);
+    opacity:0;
+    transition:opacity 0.35s
+}
+.service-card:hover {
+    transform:translateY(-8px);
+    border-color:var(--accent);
+    box-shadow:0 0 40px var(--glow2),var(--shadow)
+}
+.service-card:hover::before {
+    opacity:1
+}
+.service-icon {
+    width:56px;
+    height:56px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.4rem;
+    color:#fff;
+    margin-bottom:20px;
+    box-shadow:0 0 20px var(--glow);
+    transition:transform 0.35s
+}
+.service-card:hover .service-icon {
+    transform:scale(1.1) rotate(-5deg)
+}
+.service-card h3 {
+    font-size:1.05rem;
+    font-weight:700;
+    margin-bottom:10px
+}
+.service-card p {
+    font-size:0.875rem;
+    color:var(--text2);
+    line-height:1.7
+}
+.service-tag {
+    position:absolute;
+    top:20px;
+    right:20px;
+    background:var(--glow2);
+    border:1px solid var(--border);
+    border-radius:50px;
+    padding:3px 10px;
+    font-size:0.7rem;
+    color:var(--accent);
+    font-weight:600
+}
+/* ===== PRODUCTS ===== */
+#products {
+    background:var(--bg2)
+}
+.products-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:20px
+}
+.product-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+    transition:all 0.35s;
+    cursor:pointer
+}
+.product-card:hover {
+    transform:translateY(-8px);
+    border-color:var(--accent);
+    box-shadow:0 0 30px var(--glow2)
+}
+.product-img {
+    height:160px;
+    overflow:hidden;
+    position:relative;
+    background:linear-gradient(135deg,var(--bg3),var(--card2))
+}
+.product-img img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 0.4s
+}
+.product-card:hover .product-img img {
+    transform:scale(1.1)
+}
+.product-img-icon {
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:3rem;
+    color:var(--accent);
+    opacity:0.6
+}
+.product-info {
+    padding:16px
+}
+.product-info h3 {
+    font-size:0.95rem;
+    font-weight:700;
+    margin-bottom:4px
+}
+.product-info p {
+    font-size:0.8rem;
+    color:var(--text2)
+}
+.product-badge {
+    display:inline-block;
+    margin-top:8px;
+    background:var(--glow2);
+    border:1px solid var(--border);
+    border-radius:50px;
+    padding:2px 10px;
+    font-size:0.7rem;
+    color:var(--accent);
+    font-weight:600
+}
+/* ===== DIGITAL SERVICES ===== */
+#digital {
+    background:var(--bg)
+}
+.digital-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:24px
+}
+.digital-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:28px;
+    text-align:center;
+    transition:all 0.35s
+}
+.digital-card:hover {
+    transform:translateY(-6px);
+    border-color:var(--accent);
+    box-shadow:0 0 30px var(--glow2)
+}
+.digital-icon {
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.6rem;
+    color:#fff;
+    margin:0 auto 20px;
+    box-shadow:0 0 24px var(--glow)
+}
+.digital-card h3 {
+    font-size:1rem;
+    font-weight:700;
+    margin-bottom:8px
+}
+.digital-card p {
+    font-size:0.85rem;
+    color:var(--text2)
+}
+/* ===== PRICING ===== */
+#pricing {
+    background:var(--bg2)
+}
+.pricing-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+    gap:24px
+}
+.price-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:28px;
+    transition:all 0.35s;
+    position:relative;
+    overflow:hidden
+}
+.price-card::after {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    opacity:0;
+    transition:opacity 0.35s
+}
+.price-card:hover {
+    transform:translateY(-6px);
+    box-shadow:0 0 30px var(--glow2);
+    border-color:var(--accent)
+}
+.price-card:hover::after {
+    opacity:1
+}
+.price-icon {
+    font-size:1.8rem;
+    color:var(--accent);
+    margin-bottom:16px
+}
+.price-card h3 {
+    font-size:0.95rem;
+    font-weight:700;
+    margin-bottom:12px
+}
+.price-amount {
+    font-size:2rem;
+    font-weight:800;
+    color:var(--accent);
+    display:block
+}
+.price-amount span {
+    font-size:1rem;
+    font-weight:500;
+    color:var(--text2)
+}
+.price-note {
+    font-size:0.8rem;
+    color:var(--text3);
+    margin-top:8px
+}
+.price-features {
+    margin-top:16px;
+    display:flex;
+    flex-direction:column;
+    gap:8px
+}
+.price-features li {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.82rem;
+    color:var(--text2)
+}
+.price-features li i {
+    color:var(--green);
+    font-size:0.75rem
+}
+/* ===== BOOKING ===== */
+#booking {
+    background:var(--bg)
+}
+.booking-outer {
+    max-width:700px;
+    margin:0 auto;
+}
+.booking-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 0 60px rgba(0,180,255,0.1),var(--shadow);
+    position:relative;
+}
+.booking-card::before {
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:3px;
+    background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent);
+}
+.booking-header {
+    padding:28px 28px 20px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    border-bottom:1px solid var(--border);
+}
+.booking-header-icon {
+    width:48px;height:48px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.2rem;color:#fff;
+    flex-shrink:0;
+    box-shadow:0 0 20px var(--glow);
+}
+.booking-header-text h3 {
+    font-size:1rem;font-weight:700;margin-bottom:2px;
+}
+.booking-header-text p {
+    font-size:0.78rem;color:var(--text3);
+}
+.booking-body {
+    padding:24px 28px 28px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+.bfield {
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+.bfield label {
+    font-size:0.78rem;
+    font-weight:700;
+    color:var(--text3);
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    display:flex;align-items:center;gap:6px;
+}
+.bfield label i {
+    color:var(--accent);font-size:0.75rem;
+}
+.bfield input,.bfield textarea,.bfield select {
+    background:var(--bg2);
+    border:1.5px solid var(--border);
+    border-radius:12px;
+    padding:13px 16px;
+    color:var(--text);
+    font-size:0.92rem;
+    font-family:'Poppins',sans-serif;
+    transition:all 0.25s;
+    width:100%;
+}
+.bfield input:focus,.bfield textarea:focus {
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(0,180,255,0.1);
+    outline:none;
+}
+.bfield input::placeholder,.bfield textarea::placeholder {
+    color:var(--text3);
+    font-size:0.88rem;
+}
+.bfield textarea {
+    resize:none;
+    min-height:90px;
+}
+.brow {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+@media(max-width:520px){
+    .brow{grid-template-columns:1fr;}
+    .booking-body{padding:18px 16px 20px;}
+    .booking-header{padding:20px 16px 16px;}
+}
+.book-btn {
+    width:100%;
+    padding:15px;
+    background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);
+    color:#fff;
+    border-radius:14px;
+    font-size:0.95rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:all 0.3s;
+    border:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    letter-spacing:0.3px;
+    margin-top:4px;
+    position:relative;
+    overflow:hidden;
+}
+.book-btn::after {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);
+    opacity:0;
+    transition:opacity 0.3s;
+}
+.book-btn:hover {
+    transform:translateY(-2px);
+    box-shadow:0 8px 32px var(--glow);
+}
+.book-btn:hover::after{opacity:1;}
+.book-btn:active{transform:scale(0.98);}
+.bfield-note {
+    font-size:0.75rem;
+    color:var(--text3);
+    text-align:center;
+    display:flex;align-items:center;justify-content:center;gap:5px;
+}
+/* ===== WHY CHOOSE ===== */
+#why {
+    background:var(--bg2)
+}
+.why-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:24px
+}
+.why-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:28px;
+    text-align:center;
+    transition:all 0.35s
+}
+.why-card:hover {
+    transform:translateY(-6px);
+    border-color:var(--accent);
+    box-shadow:0 0 24px var(--glow2)
+}
+.why-icon {
+    width:56px;
+    height:56px;
+    margin:0 auto 16px;
+    background:var(--glow2);
+    border:1px solid var(--border);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.4rem;
+    color:var(--accent);
+    transition:all 0.35s
+}
+.why-card:hover .why-icon {
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#fff;
+    box-shadow:0 0 20px var(--glow);
+    border-color:transparent
+}
+.why-card h3 {
+    font-size:0.95rem;
+    font-weight:700;
+    margin-bottom:8px
+}
+.why-card p {
+    font-size:0.82rem;
+    color:var(--text2)
+}
+/* ===== GALLERY ===== */
+#gallery {
+    background:var(--bg)
+}
+.gallery-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-template-rows:auto auto;
+    gap:16px
+}
+@media(max-width:900px) {
+    .gallery-grid {
+    grid-template-columns:repeat(2,1fr)
+}
+}@media(max-width:500px) {
+    .gallery-grid {
+    grid-template-columns:1fr 1fr
+}
+}.gal-item {
+    border-radius:16px;
+    overflow:hidden;
+    position:relative;
+    border:1px solid var(--border);
+    cursor:pointer;
+    background:var(--card)
+}
+.gal-item:first-child {
+    grid-row:span 2
+}
+.gal-item img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    min-height:160px;
+    transition:transform 0.4s
+}
+.gal-item:hover img {
+    transform:scale(1.08)
+}
+.gal-overlay {
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
+    opacity:0;
+    transition:opacity 0.35s;
+    display:flex;
+    align-items:flex-end;
+    padding:16px
+}
+.gal-item:hover .gal-overlay {
+    opacity:1
+}
+.gal-label {
+    font-size:0.85rem;
+    font-weight:600;
+    color:#fff
+}
+.gal-icon-wrap {
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:3rem;
+    color:var(--accent);
+    opacity:0.35
+}
+/* ===== REVIEWS ===== */
+#reviews {
+    background:var(--bg2)
+}
+.reviews-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:24px
+}
+.review-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:28px;
+    transition:all 0.35s;
+    position:relative
+}
+.review-card:hover {
+    transform:translateY(-6px);
+    border-color:var(--accent);
+    box-shadow:0 0 24px var(--glow2)
+}
+.review-quote {
+    font-size:2rem;
+    color:var(--accent);
+    opacity:0.5;
+    line-height:1;
+    margin-bottom:12px
+}
+.review-text {
+    font-size:0.9rem;
+    color:var(--text2);
+    line-height:1.8;
+    margin-bottom:20px;
+    font-style:italic
+}
+.review-stars {
+    color:var(--gold);
+    font-size:0.9rem;
+    margin-bottom:12px
+}
+.review-author {
+    display:flex;
+    align-items:center;
+    gap:12px
+}
+.review-avatar {
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1rem;
+    font-weight:700;
+    color:#fff
+}
+.review-name {
+    font-weight:700;
+    font-size:0.92rem
+}
+.review-role {
+    font-size:0.78rem;
+    color:var(--text3)
+}
+/* ===== CONTACT ===== */
+#contact {
+    background:var(--bg)
+}
+.contact-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px
+}
+@media(max-width:768px) {
+    .contact-grid {
+    grid-template-columns:1fr
+}
+}.contact-info {
+    display:flex;
+    flex-direction:column;
+    gap:20px
+}
+.contact-item {
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    padding:20px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    transition:all 0.3s
+}
+.contact-item:hover {
+    border-color:var(--accent);
+    box-shadow:0 0 16px var(--glow2)
+}
+.contact-item-icon {
+    width:44px;
+    height:44px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1rem;
+    color:#fff;
+    flex-shrink:0;
+    box-shadow:0 0 16px var(--glow)
+}
+.contact-item h4 {
+    font-size:0.85rem;
+    font-weight:700;
+    margin-bottom:4px
+}
+.contact-item p {
+    font-size:0.85rem;
+    color:var(--text2);
+    line-height:1.6
+}
+.map-box {
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    height:200px;
+    background:var(--card);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    margin-top:4px
+}
+.map-placeholder {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    color:var(--text3);
+    font-size:0.9rem
+}
+.map-placeholder i {
+    font-size:2rem;
+    color:var(--accent)
+}
+.contact-form {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:36px
+}
+.contact-form h3 {
+    font-size:1.2rem;
+    font-weight:700;
+    margin-bottom:24px
+}
+.cf-grid {
+    display:flex;
+    flex-direction:column;
+    gap:16px
+}
+.cf-row {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px
+}
+@media(max-width:500px) {
+    .cf-row {
+    grid-template-columns:1fr
+}
+}.cf-input {
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:13px 16px;
+    color:var(--text);
+    font-size:0.88rem;
+    width:100%;
+    transition:all 0.3s
+}
+.cf-input:focus {
+    border-color:var(--accent);
+    box-shadow:0 0 14px var(--glow2)
+}
+.cf-textarea {
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:13px 16px;
+    color:var(--text);
+    font-size:0.88rem;
+    width:100%;
+    resize:vertical;
+    min-height:100px;
+    transition:all 0.3s
+}
+.cf-textarea:focus {
+    border-color:var(--accent);
+    box-shadow:0 0 14px var(--glow2)
+}
+.cf-btn {
+    width:100%;
+    padding:14px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#fff;
+    border-radius:10px;
+    font-size:0.95rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:all 0.3s;
+    border:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px
+}
+.cf-btn:hover {
+    transform:translateY(-3px);
+    box-shadow:0 0 24px var(--glow)
+}
+/* ===== WHATSAPP FLOAT ===== */
+.wa-btn {
+    position:fixed;
+    bottom:28px;
+    right:24px;
+    z-index:999;
+    display:flex;
+    align-items:center;
+    gap:0;
+    background:#128C7E;
+    border-radius:50px;
+    box-shadow:0 4px 24px rgba(18,140,126,0.45);
+    overflow:hidden;
+    transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    text-decoration:none;
+    max-width:52px;
+}
+.wa-btn:hover {
+    max-width:220px;
+    box-shadow:0 6px 36px rgba(18,140,126,0.6);
+    background:#25D366;
+}
+.wa-icon-wrap {
+    width:52px;height:52px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.45rem;
+    color:#fff;
+    flex-shrink:0;
+    position:relative;
+    z-index:1;
+}
+.wa-icon-wrap::after {
+    content:'';
+    position:absolute;
+    inset:8px;
+    background:rgba(255,255,255,0.12);
+    border-radius:50%;
+    transform:scale(0);
+    transition:transform 0.3s;
+}
+.wa-btn:hover .wa-icon-wrap::after {
+    transform:scale(1);
+}
+.wa-text {
+    color:#fff;
+    font-size:0.82rem;
+    font-weight:700;
+    white-space:nowrap;
+    padding-right:18px;
+    opacity:0;
+    transform:translateX(-8px);
+    transition:opacity 0.25s 0.1s, transform 0.25s 0.1s;
+    font-family:'Poppins',sans-serif;
+    letter-spacing:0.3px;
+}
+.wa-btn:hover .wa-text {
+    opacity:1;
+    transform:translateX(0);
+}
+.wa-ring {
+    position:absolute;
+    inset:-4px;
+    border-radius:60px;
+    border:2px solid rgba(37,211,102,0.4);
+    animation:wa-ring 2.5s ease-in-out infinite;
+    pointer-events:none;
+}
+@keyframes wa-ring {
+    0%,100%{transform:scale(1);opacity:0.6;}
+    50%{transform:scale(1.08);opacity:0;}
+}
+/* ===== FOOTER ===== */
+footer {
+    background:var(--bg2);
+    border-top:1px solid var(--border);
+    padding:60px 0 30px
+}
+.footer-grid {
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+    margin-bottom:48px
+}
+@media(max-width:900px) {
+    .footer-grid {
+    grid-template-columns:1fr 1fr
+}
+}@media(max-width:500px) {
+    .footer-grid {
+    grid-template-columns:1fr
+}
+}.footer-brand p {
+    font-size:0.875rem;
+    color:var(--text2);
+    margin-top:16px;
+    line-height:1.8;
+    max-width:260px
+}
+.footer-social {
+    display:flex;
+    gap:12px;
+    margin-top:20px
+}
+.footer-social a {
+    width:36px;
+    height:36px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--text2);
+    font-size:0.9rem;
+    transition:all 0.3s
+}
+.footer-social a:hover {
+    background:var(--accent);
+    color:#fff;
+    border-color:var(--accent);
+    box-shadow:0 0 16px var(--glow)
+}
+.footer-col h4 {
+    font-size:0.9rem;
+    font-weight:700;
+    margin-bottom:16px;
+    color:var(--text)
+}
+.footer-col ul {
+    display:flex;
+    flex-direction:column;
+    gap:10px
+}
+.footer-col ul li a {
+    font-size:0.85rem;
+    color:var(--text2);
+    transition:color 0.3s
+}
+.footer-col ul li a:hover {
+    color:var(--accent)
+}
+.footer-bottom {
+    border-top:1px solid var(--border);
+    padding-top:24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px
+}
+.footer-bottom p {
+    font-size:0.82rem;
+    color:var(--text3)
+}
+.footer-bottom span {
+    color:var(--accent)
+}
+/* ===== SECTION DIVIDERS ===== */
+.wave-divider {
+    overflow:hidden;
+    line-height:0;
+    background:var(--bg)
+}
+.wave-divider svg {
+    display:block
+}
+/* ===== REVEAL ANIMATION ===== */
+.reveal {
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity 0.7s ease,transform 0.7s ease
+}
+.reveal.visible {
+    opacity:1;
+    transform:translateY(0)
+}
+/* ===== TOAST NOTIFICATION ===== */
+.toast {
+    position:fixed;
+    bottom:100px;
+    right:24px;
+    background:var(--card);
+    border:1px solid var(--accent);
+    border-radius:12px;
+    padding:16px 20px;
+    font-size:0.88rem;
+    color:var(--text);
+    z-index:2000;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    box-shadow:var(--shadow-glow);
+    transform:translateX(200%);
+    transition:transform 0.4s ease
+}
+.toast.show {
+    transform:translateX(0)
+}
+.toast i {
+    color:var(--green);
+    font-size:1.1rem
+}
+/* ===== RESPONSIVE ===== */
+@media(max-width:960px) {
+    .nav-links {
+    display:none
+}
+.hamburger {
+    display:flex
+}
+.hero-stats {
+    gap:24px
+}
+}@media(max-width:600px) {
+    section {
+    padding:60px 0
+}
+.hero-btns {
+    flex-direction:column;
+    align-items:flex-start
+}
+.footer-grid {
+    grid-template-columns:1fr
+}
+.booking-wrap {
+    padding:28px 20px
+}
+}/* ===== CYBER GLITCH EFFECT ON LOGO ===== */
+.logo-text {
+    position:relative;
+    display:inline-block
+}
+.logo-text::after {
+    content:'MoonTec';
+    position:absolute;
+    top:0;
+    left:1px;
+    color:var(--accent);
+    opacity:0;
+    clip-path:polygon(0 30%,100% 30%,100% 50%,0 50%)
+}
+.logo:hover .logo-text::after {
+    animation:glitch 0.4s steps(2) forwards
+}
+@keyframes glitch {
+    0% {
+    opacity:0.8;
+    left:-2px
+}
+50% {
+    opacity:0.6;
+    left:2px
+}
+100% {
+    opacity:0;
+    left:-1px
+}
+}/* ===== MARQUEE ===== */
+.marquee-wrap {
+    background:linear-gradient(90deg,var(--accent2),var(--accent));
+    padding:14px 0;
+    overflow:hidden;
+    white-space:nowrap
+}
+.marquee-track {
+    display:inline-block;
+    animation:marquee 20s linear infinite
+}
+.marquee-wrap:hover .marquee-track {
+    animation-play-state:paused
+}
+.marquee-item {
+    display:inline-block;
+    margin:0 40px;
+    font-size:0.82rem;
+    font-weight:700;
+    color:#fff;
+    font-family:'Space Mono',monospace;
+    letter-spacing:1px
+}
+.marquee-item i {
+    margin-right:8px
+}
+@keyframes marquee {
+    0% {
+    transform:translateX(0)
+}
+100% {
+    transform:translateX(-50%)
+}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-moon"></i></div>
+      <span class="logo-text">Moon<span>Tec</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#booking">Booking</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#booking" class="btn btn-primary hide-on-mobile">
+        <i class="fa-solid fa-calendar-check"></i> Book Repair
+      </a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#products">Products</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#booking">Booking</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg">
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=1600&q=80" alt="Electronics Background"/>
+    <div class="hero-grid"></div>
+    <div class="hero-orb"></div>
+    <div class="hero-orb2"></div>
+  </div>
+  <div class="hero-content container">
+    <div class="hero-badge"><i class="fa-solid fa-circle-dot"></i> Now Open – Fast Repairs Available</div>
+    <h1 class="hero-title">
+      <span class="glow-text">MoonTec</span><br>
+      Mobile Repair &<br>Accessories
+    </h1>
+    <p class="hero-sub">Fast, Reliable Smartphone Repairs & Quality Mobile Accessories. Your trusted local tech partner.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn btn-primary"><i class="fa-solid fa-wrench"></i> Our Services</a>
+      <a href="#contact" class="btn btn-outline"><i class="fa-solid fa-location-dot"></i> Contact / Visit Shop</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="hero-stat-num">2000+</span><div class="hero-stat-label">Repairs Done</div></div>
+      <div class="hero-stat"><span class="hero-stat-num">5★</span><div class="hero-stat-label">Customer Rating</div></div>
+      <div class="hero-stat"><span class="hero-stat-num">30min</span><div class="hero-stat-label">Avg. Repair Time</div></div>
+      <div class="hero-stat"><span class="hero-stat-num">100%</span><div class="hero-stat-label">Satisfaction</div></div>
+    </div>
+  </div>
+  <div class="floating-icons">
+    <div class="fi"><i class="fa-solid fa-mobile-screen"></i></div>
+    <div class="fi"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+    <div class="fi"><i class="fa-solid fa-battery-full"></i></div>
+    <div class="fi"><i class="fa-solid fa-headphones"></i></div>
+  </div>
+  <div class="scroll-hint">Scroll Down <div class="arrow"></div></div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><i class="fa-solid fa-mobile-screen"></i>Screen Repair</span>
+    <span class="marquee-item"><i class="fa-solid fa-battery-full"></i>Battery Replacement</span>
+    <span class="marquee-item"><i class="fa-solid fa-plug"></i>Charging Port Fix</span>
+    <span class="marquee-item"><i class="fa-solid fa-headphones"></i>Accessories</span>
+    <span class="marquee-item"><i class="fa-solid fa-sim-card"></i>SIM Cards</span>
+    <span class="marquee-item"><i class="fa-solid fa-mobile-button"></i>Mobile Recharge</span>
+    <span class="marquee-item"><i class="fa-solid fa-shield-halved"></i>Software Fix</span>
+    <span class="marquee-item"><i class="fa-solid fa-mobile-screen"></i>Screen Repair</span>
+    <span class="marquee-item"><i class="fa-solid fa-battery-full"></i>Battery Replacement</span>
+    <span class="marquee-item"><i class="fa-solid fa-plug"></i>Charging Port Fix</span>
+    <span class="marquee-item"><i class="fa-solid fa-headphones"></i>Accessories</span>
+    <span class="marquee-item"><i class="fa-solid fa-sim-card"></i>SIM Cards</span>
+    <span class="marquee-item"><i class="fa-solid fa-mobile-button"></i>Mobile Recharge</span>
+    <span class="marquee-item"><i class="fa-solid fa-shield-halved"></i>Software Fix</span>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-img-wrap">
+          <img src="Image9.jpg" alt="MoonTec Shop"/>
+          <div class="about-badge">
+            <span class="about-badge-num">5★</span>
+            <div class="about-badge-text">Customer Rating</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <span class="section-label">About Us</span>
+        <h2 class="section-title">Your Trusted <span class="glow-text">Tech Partner</span></h2>
+        <p style="color:var(--text2);margin-bottom:24px;line-height:1.8;font-size:0.95rem">MoonTec is a trusted mobile repair and accessories shop dedicated to providing fast, reliable, and affordable services. We specialize in smartphone repairs, mobile accessories, and digital recharge services. Our goal is to deliver quality service and total customer satisfaction.</p>
+        <p style="color:var(--text2);margin-bottom:28px;line-height:1.8;font-size:0.95rem">From cracked screens to battery issues, software problems to accessories – we're your one-stop destination for all mobile needs.</p>
+        <div class="about-list">
+          <div class="about-item"><i class="fa-solid fa-clock"></i>Quick turnaround – most repairs in under 30 minutes</div>
+          <div class="about-item"><i class="fa-solid fa-shield-halved"></i>Genuine quality parts with warranty</div>
+          <div class="about-item"><i class="fa-solid fa-tag"></i>Affordable & transparent pricing</div>
+          <div class="about-item"><i class="fa-solid fa-star"></i>Experienced & friendly technicians</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">What We Fix</span>
+      <h2 class="section-title">Our Repair <span class="glow-text">Services</span></h2>
+      <p class="section-sub">Professional repair services for all smartphone brands and models with fast turnaround.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-tag">Popular</div>
+        <div class="service-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+        <h3>Screen Replacement</h3>
+        <p>Original quality screen replacements for all smartphone brands. Crystal clear display, restored touch sensitivity.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="fa-solid fa-battery-full"></i></div>
+        <h3>Battery Replacement</h3>
+        <p>Restore your phone's battery life with genuine replacement batteries. Fast charging performance guaranteed.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="fa-solid fa-plug"></i></div>
+        <h3>Charging Port Repair</h3>
+        <p>Fix loose, dirty, or damaged charging ports. Support for USB-C, Micro USB, and Lightning connectors.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+        <h3>Software Update & Flashing</h3>
+        <p>Resolve software glitches, OS issues, bootloops, and perform system updates and clean flashing.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="fa-solid fa-broom"></i></div>
+        <h3>Mobile Cleaning & Maintenance</h3>
+        <p>Deep cleaning of ports, speakers, cameras, and internals to restore performance and audio quality.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="fa-solid fa-stethoscope"></i></div>
+        <h3>Phone Diagnostics</h3>
+        <p>Comprehensive hardware and software diagnostics to pinpoint issues accurately before any repair.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section id="products">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Accessories Store</span>
+      <h2 class="section-title">Mobile <span class="glow-text">Accessories</span></h2>
+      <p class="section-sub">Premium quality mobile accessories at the best prices in town.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card reveal">
+        <div class="product-img">
+          <div class="product-img-icon"><i class="fa-solid fa-hard-drive"></i></div>
+          <img src="Image7.jpeg" alt="Pendrive"/>
+        </div>
+        <div class="product-info">
+          <h3>Pendrives</h3>
+          <p>USB Flash Drives</p>
+          <span class="product-badge">8GB–256GB</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">
+          <div class="product-img-icon"><i class="fa-solid fa-headphones"></i></div>
+          <img src="Image2.jpeg" alt="Headset"/>
+        </div>
+        <div class="product-info">
+          <h3>Headsets & Earphones</h3>
+          <p>Wired & Wireless</p>
+          <span class="product-badge">All Brands</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">
+          <div class="product-img-icon"><i class="fa-solid fa-cable-car"></i></div>
+          <img src="Image8.jpeg" alt="USB Cables"/>
+        </div>
+        <div class="product-info">
+          <h3>USB Cables</h3>
+          <p>Type-C, Lightning, Micro USB</p>
+          <span class="product-badge">Fast Charge</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">
+          <div class="product-img-icon"><i class="fa-solid fa-sd-card"></i></div>
+          <img src="Image6.jpeg" alt="SD Cards"/>
+        </div>
+        <div class="product-info">
+          <h3>SD Cards</h3>
+          <p>Memory Cards</p>
+          <span class="product-badge">Up to 512GB</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">
+          <div class="product-img-icon"><i class="fa-solid fa-sim-card"></i></div>
+          <img src="Image5.jpeg" alt="SIM Cards"/>
+        </div>
+        <div class="product-info">
+          <h3>SIM Cards</h3>
+          <p>All Operators Available</p>
+          <span class="product-badge">Activation</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">
+          <div class="product-img-icon"><i class="fa-solid fa-bolt"></i></div>
+          <img src="Image4.jpeg" alt="Chargers"/>
+        </div>
+        <div class="product-info">
+          <h3>Mobile Chargers</h3>
+          <p>5W – 65W Fast Chargers</p>
+          <span class="product-badge">Original</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">
+          <div class="product-img-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <img src="Image3.jpeg" alt="Mobile Covers"/>
+        </div>
+        <div class="product-info">
+          <h3>Mobile Covers</h3>
+          <p>Cases & Back Covers</p>
+          <span class="product-badge">All Models</span>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img">
+          <div class="product-img-icon"><i class="fa-solid fa-display"></i></div>
+          <img src="Image1.jpeg" alt="Screen Protectors"/>
+        </div>
+        <div class="product-info">
+          <h3>Screen Protectors</h3>
+          <p>Tempered Glass</p>
+          <span class="product-badge">Anti-Scratch</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DIGITAL SERVICES ===== -->
+<section id="digital">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Digital Services</span>
+      <h2 class="section-title">Recharge & <span class="glow-text">Digital Services</span></h2>
+      <p class="section-sub">Convenient digital services for all your mobile and connectivity needs.</p>
+    </div>
+    <div class="digital-grid">
+      <div class="digital-card reveal">
+        <div class="digital-icon"><i class="fa-solid fa-mobile-button"></i></div>
+        <h3>Mobile Recharge</h3>
+        <p>Instant recharge for all operators – Airtel, Jio, Vi, BSNL</p>
+      </div>
+      <div class="digital-card reveal">
+        <div class="digital-icon"><i class="fa-solid fa-sim-card"></i></div>
+        <h3>SIM Activation</h3>
+        <p>New SIM activation and port assistance for all networks</p>
+      </div>
+      <div class="digital-card reveal">
+        <div class="digital-icon"><i class="fa-solid fa-wifi"></i></div>
+        <h3>Data Pack Recharge</h3>
+        <p>All data packs and special plan recharges available</p>
+      </div>
+      <div class="digital-card reveal">
+        <div class="digital-icon"><i class="fa-solid fa-gears"></i></div>
+        <h3>Phone Setup Assistance</h3>
+        <p>New phone setup, data transfer, app installation & configuration</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Transparent Pricing</span>
+      <h2 class="section-title">Repair <span class="glow-text">Price List</span></h2>
+      <p class="section-sub">Affordable and transparent pricing – no hidden charges, ever.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+        <h3>Screen Replacement</h3>
+        <span class="price-amount">₹800 <span>starting</span></span>
+        <p class="price-note">Price varies by device model</p>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check"></i>Original quality screen</li>
+          <li><i class="fa-solid fa-check"></i>30 min service</li>
+          <li><i class="fa-solid fa-check"></i>30-day warranty</li>
+        </ul>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-icon"><i class="fa-solid fa-battery-full"></i></div>
+        <h3>Battery Replacement</h3>
+        <span class="price-amount">₹500 <span>starting</span></span>
+        <p class="price-note">Genuine capacity batteries</p>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check"></i>High-capacity battery</li>
+          <li><i class="fa-solid fa-check"></i>20 min service</li>
+          <li><i class="fa-solid fa-check"></i>90-day warranty</li>
+        </ul>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-icon"><i class="fa-solid fa-plug"></i></div>
+        <h3>Charging Port Repair</h3>
+        <span class="price-amount">₹400 <span>starting</span></span>
+        <p class="price-note">All connector types</p>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check"></i>All port types</li>
+          <li><i class="fa-solid fa-check"></i>Fast service</li>
+          <li><i class="fa-solid fa-check"></i>Tested after repair</li>
+        </ul>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-icon"><i class="fa-solid fa-code"></i></div>
+        <h3>Software Fix</h3>
+        <span class="price-amount">₹300 <span>starting</span></span>
+        <p class="price-note">OS issues & bootloop</p>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check"></i>Full OS flash</li>
+          <li><i class="fa-solid fa-check"></i>Data preserved</li>
+          <li><i class="fa-solid fa-check"></i>Performance boost</li>
+        </ul>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:28px;font-size:0.85rem;color:var(--text3)">* Prices may vary depending on device model and repair complexity. Contact us for a free quote.</p>
+  </div>
+</section>
+
+<!-- ===== BOOKING ===== -->
+<section id="booking">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Online Booking</span>
+      <h2 class="section-title">Book a <span class="glow-text">Repair</span></h2>
+      <p class="section-sub">Schedule your repair online and skip the wait. We'll be ready when you arrive.</p>
+    </div>
+    <div class="booking-outer reveal">
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-header-icon"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="booking-header-text">
+            <h3>Repair Booking Form</h3>
+            <p>Fill in the details below and we'll confirm your slot</p>
+          </div>
+        </div>
+        <div class="booking-body">
+          <div class="brow">
+            <div class="bfield">
+              <label><i class="fa-solid fa-user"></i> Customer Name</label>
+              <input type="text" id="bName" placeholder="Your full name"/>
+            </div>
+            <div class="bfield">
+              <label><i class="fa-solid fa-phone"></i> Phone Number</label>
+              <input type="tel" id="bPhone" placeholder="+91 XXXXX XXXXX"/>
+            </div>
+          </div>
+          <div class="brow">
+            <div class="bfield">
+              <label><i class="fa-solid fa-mobile-screen"></i> Device Model</label>
+              <input type="text" id="bDevice" placeholder="e.g. Samsung S21"/>
+            </div>
+            <div class="bfield">
+              <label><i class="fa-solid fa-calendar"></i> Preferred Date</label>
+              <input type="date" id="bDate"/>
+            </div>
+          </div>
+          <div class="bfield">
+            <label><i class="fa-solid fa-triangle-exclamation"></i> Problem Description</label>
+            <textarea id="bProblem" placeholder="Describe the issue with your device..."></textarea>
+          </div>
+          <button class="book-btn" onclick="submitBooking()">
+            <i class="fa-solid fa-paper-plane"></i> Confirm Booking
+          </button>
+          <p class="bfield-note"><i class="fa-solid fa-lock"></i> Your details are safe with us. We'll call you to confirm.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY CHOOSE ===== -->
+<section id="why">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Why MoonTec</span>
+      <h2 class="section-title">Why Choose <span class="glow-text">Us?</span></h2>
+      <p class="section-sub">We're committed to providing the best mobile repair experience in town.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-bolt"></i></div>
+        <h3>Fast Repairs</h3>
+        <p>Most repairs completed within 30 minutes while you wait.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-tag"></i></div>
+        <h3>Affordable Prices</h3>
+        <p>Competitive pricing with no hidden charges. Free diagnostic.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-gem"></i></div>
+        <h3>Quality Parts</h3>
+        <p>Only genuine and high-quality replacement parts used.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-handshake"></i></div>
+        <h3>Friendly Service</h3>
+        <p>Our friendly team ensures you feel comfortable and informed.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-map-pin"></i></div>
+        <h3>Trusted Local Shop</h3>
+        <p>Serving the local community for years with thousands of happy customers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Our Gallery</span>
+      <h2 class="section-title">Shop & Work <span class="glow-text">Gallery</span></h2>
+      <p class="section-sub">A look inside MoonTec – our workspace, products, and completed repairs.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80" alt="Repair work"/>
+        <div class="gal-overlay"><span class="gal-label">Repair Lab</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&q=80" alt="Mobile accessories"/>
+        <div class="gal-overlay"><span class="gal-label">Accessories</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=500&q=80" alt="Repair tools"/>
+        <div class="gal-overlay"><span class="gal-label">Repair Tools</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&q=80" alt="Smartphones"/>
+        <div class="gal-overlay"><span class="gal-label">Smartphones</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1625842268584-8f3296236761?w=500&q=80" alt="Chargers"/>
+        <div class="gal-overlay"><span class="gal-label">Chargers</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section id="reviews" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Customer Reviews</span>
+      <h2 class="section-title">What Our <span class="glow-text">Customers Say</span></h2>
+      <p class="section-sub">Real reviews from real customers who trust MoonTec.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <p class="review-text">Very fast service and good price! My phone screen was broken and they fixed it in just 20 minutes. Highly recommend MoonTec!</p>
+        <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <div class="review-author">
+          <div class="review-avatar">R</div>
+          <div><div class="review-name">Rahul Menon</div><div class="review-role">Regular Customer</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <p class="review-text">Best mobile repair shop in town! The staff is very friendly and knowledgeable. Got my battery replaced at a very reasonable price.</p>
+        <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <div class="review-author">
+          <div class="review-avatar">P</div>
+          <div><div class="review-name">Priya Nair</div><div class="review-role">Verified Customer</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <p class="review-text">I've been coming here for all my accessories and recharge needs. Always honest and transparent about prices. MoonTec is simply the best!</p>
+        <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div><div class="review-name">Arjun Krishnan</div><div class="review-role">Loyal Customer</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Get In Touch</span>
+      <h2 class="section-title">Contact <span class="glow-text">Us</span></h2>
+      <p class="section-sub">Visit us at the shop or get in touch – we're always happy to help.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <h4>Phone Number</h4>
+            <p>+91 85902 74795<br>+91 98958 40797</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <h4>Shop Address</h4>
+            <p>MoonTec , XIX / 188,<br>A.J. Tower , Chandakunnu Kerala</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fa-solid fa-clock"></i></div>
+          <div>
+            <h4>Opening Hours</h4>
+            <p>Mon – Sat: 9:00 AM – 8:00 PM<br>Sunday : Closed</p>
+          </div>
+        </div>
+        <div class="map-box">
+          <div class="map-placeholder">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>Google Maps – Thrissur, Kerala</span>
+            <a href="https://maps.google.com" target="_blank" class="btn btn-outline" style="padding:8px 18px;font-size:0.8rem;margin-top:8px"><i class="fa-solid fa-directions"></i> Get Directions</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <h3><i class="fa-solid fa-paper-plane" style="color:var(--accent);margin-right:10px"></i>Send a Message</h3>
+        <div class="cf-grid">
+          <div class="cf-row">
+            <input class="cf-input" type="text" placeholder="Your Name" id="cfName"/>
+            <input class="cf-input" type="email" placeholder="Email Address" id="cfEmail"/>
+          </div>
+          <input class="cf-input" type="text" placeholder="Subject"/>
+          <textarea class="cf-textarea" placeholder="Your message..."></textarea>
+          <button class="cf-btn" onclick="submitContact()">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#hero" class="logo" style="font-size:1.3rem">
+          <div class="logo-icon"><i class="fa-solid fa-moon"></i></div>
+          Moon<span>Tec</span>
+        </a>
+        <p>Your trusted mobile repair and accessories shop. Fast service, quality parts, and a smile every time.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#booking">Book Repair</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Screen Repair</a></li>
+          <li><a href="#services">Battery Replacement</a></li>
+          <li><a href="#services">Charging Port Fix</a></li>
+          <li><a href="#services">Software Fix</a></li>
+          <li><a href="#digital">Mobile Recharge</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+919876543210"><i class="fa-solid fa-phone" style="color:var(--accent);width:16px"></i> +91 98958 40797</a></li>
+          <li><a href="https://wa.me/918590274795"><i class="fa-brands fa-whatsapp" style="color:var(--accent);width:16px"></i> WhatsApp Us</a></li>
+          <li><a href="#contact"><i class="fa-solid fa-envelope" style="color:var(--accent);width:16px"></i> Email Us</a></li>
+          <li><a href="#contact"><i class="fa-solid fa-location-dot" style="color:var(--accent);width:16px"></i> Thrissur, Kerala</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 <span>MoonTec</span>. All rights reserved. Made with <i class="fa-solid fa-heart" style="color:#f55"></i> in Kerala.</p>
+      <p style="color:var(--text3)">Privacy Policy · Terms of Service</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== WHATSAPP BUTTON ===== -->
+<a href="https://wa.me/918590274795" class="wa-btn" target="_blank" title="Chat on WhatsApp">
+  <div class="wa-ring"></div>
+  <div class="wa-icon-wrap"><i class="fa-brands fa-whatsapp"></i></div>
+  <span class="wa-text">Chat on WhatsApp</span>
+</a>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg">Done!</span></div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ── Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',window.scrollY > 30);
+});
+
+// ── Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click',()=>{
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+
+// ── Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'), i%4 * 80);
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.12});
+reveals.forEach(r=>observer.observe(r));
+
+// ── Toast helper
+function showToast(msg){
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),3000);
+}
+
+// ── Booking form
+function submitBooking(){
+  const n=document.getElementById('bName').value.trim();
+  const p=document.getElementById('bPhone').value.trim();
+  const d=document.getElementById('bDevice').value.trim();
+  if(!n||!p||!d){showToast('Please fill in the required fields.');return;}
+  showToast('✅ Booking confirmed! We will contact you shortly.');
+  document.getElementById('bName').value='';
+  document.getElementById('bPhone').value='';
+  document.getElementById('bDevice').value='';
+  document.getElementById('bDate').value='';
+  document.getElementById('bProblem').value='';
+}
+
+// ── Contact form
+function submitContact(){
+  const n=document.getElementById('cfName').value.trim();
+  const e=document.getElementById('cfEmail').value.trim();
+  if(!n||!e){showToast('Please fill in your name and email.');return;}
+  showToast('✅ Message sent! We\'ll reply soon.');
+  document.getElementById('cfName').value='';
+  document.getElementById('cfEmail').value='';
+}
+
+// ── Set min date for booking
+const bDate = document.getElementById('bDate');
+if(bDate){ const today = new Date().toISOString().split('T')[0]; bDate.setAttribute('min',today); }
+
+// ── Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+</script>
+</body>
+</html>
